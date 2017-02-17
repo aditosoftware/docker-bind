@@ -6,4 +6,7 @@ EXPOSE 53 53/udp
 VOLUME /etc/bind
 WORKDIR /etc/bind
 
-CMD named -4 -g
+
+ADD ./start.sh /start.sh
+RUN chmod +x /start.sh
+CMD /start.sh
