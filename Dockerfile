@@ -1,6 +1,6 @@
 FROM alpine:3.6
 
-RUN apk add --no-cache bind
+RUN apk add --no-cache bind bind-tools
 
 EXPOSE 53 53/udp
 VOLUME /etc/bind
