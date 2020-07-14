@@ -1,12 +1,14 @@
-FROM alpine
+FROM alpine:latest
 
-RUN apk add --no-cache bind bind-tools
+RUN apk add --no-cache bind && \
+        rm -f /var/cache/apk/*
 
-EXPOSE 53 53/udp
-VOLUME /etc/bind
-WORKDIR /etc/bind
+# provide minimal out of the box configuration
+RUN ["ln", "-s", "/etc/bind/named.conf.authoritative", "/etc/bind/named.conf"]
 
+COPY docker-entrypoint.sh /usr/local/bin/
+ENTRYPOINT ["docker-entrypoint.sh"]
 
-ADD ./start.sh /start.sh
-RUN chmod +x /start.sh
-CMD /start.sh
+USER named
+EXPOSE 53/tcp 53/udp
+CMD ["named", "-g"]
