@@ -14,6 +14,5 @@ RUN ["chown", "named:named", "/etc/bind/keys", "/etc/bind/zones"]
 COPY docker-entrypoint.sh /usr/local/bin/
 ENTRYPOINT ["docker-entrypoint.sh"]
 
-USER named
 EXPOSE 53/tcp 53/udp
-CMD ["named", "-g"]
+CMD ["named", "-g", "-u", "named"]
