@@ -6,6 +6,10 @@ RUN apk add --no-cache bind && \
 # provide minimal out of the box configuration
 RUN ["ln", "-s", "/etc/bind/named.conf.authoritative", "/etc/bind/named.conf"]
 
+# directory skeleton
+RUN ["mkdir", "/etc/bind/keys"]
+RUN ["mkdir", "/etc/bind/zones"]
+
 COPY docker-entrypoint.sh /usr/local/bin/
 ENTRYPOINT ["docker-entrypoint.sh"]
 
