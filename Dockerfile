@@ -11,8 +11,9 @@ RUN ["mkdir", "/etc/bind/keys"]
 RUN ["mkdir", "/etc/bind/zones"]
 RUN ["chown", "named:named", "/etc/bind/keys", "/etc/bind/zones"]
 
-COPY docker-entrypoint.sh /usr/local/bin/
+COPY ["docker-entrypoint.sh", "/usr/local/bin/"]
 ENTRYPOINT ["docker-entrypoint.sh"]
 
+WORKDIR ["/etc/bind"]
 EXPOSE 53/tcp 53/udp
-CMD ["named", "-g", "-u", "named"]
+CMD ["named", "-g"]
