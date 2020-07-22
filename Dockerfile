@@ -11,6 +11,7 @@ RUN ["mkdir", "/etc/bind/keys"]
 RUN ["mkdir", "/etc/bind/zones"]
 RUN ["chown", "root:named", "/etc/bind/keys", "/etc/bind/zones", "/etc/bind/rndc.key"]
 
+RUN ["mkdir", "/docker-entrypoint.d"]
 COPY ["docker-entrypoint.sh", "/usr/local/bin/"]
 ENTRYPOINT ["docker-entrypoint.sh"]
 
