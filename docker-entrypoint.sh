@@ -11,6 +11,7 @@ if [ "$1" = 'named' ]; then
     for f in /docker-entrypoint.d/*.sh; do
         if [ -x "$f" ]; then
             echo "$0: running $f"
+            chmod +x "$f"
             "$f"
         fi
     done
