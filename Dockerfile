@@ -1,6 +1,6 @@
 FROM alpine:latest
 
-RUN apk add --no-cache bind && \
+RUN apk add --no-cache bind entr && \
         rm -f /var/cache/apk/*
 
 # provide minimal out of the box configuration
